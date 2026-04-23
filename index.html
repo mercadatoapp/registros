@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mercadato - Registro de Marca</title>
+  <meta name="description" content="Generador de presupuestos para registro de marcas en Venezuela">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="grid-bg"></div>
+  
+  <header class="fixed top-0 w-full z-50 bg-[#0a192f]/90 backdrop-blur-md border-b border-white/10 shadow-lg flex justify-between items-center px-8 h-20 transition-all">
+    <div class="flex items-center gap-12">
+      <span class="text-3xl font-bold tracking-tighter text-[#00FFFF] cyan-glow font-headline">Mercadato</span>
+      <nav class="hidden md:flex gap-8 mt-1 text-sm font-medium">
+        <a class="font-headline tracking-wide text-[#00FFFF] border-b-2 border-[#00FFFF] pb-6" href="#">Registro de Marca</a>
+        <a class="font-headline tracking-wide text-gray-400 hover:text-[#00FFFF] transition-colors" href="#">Portafolio</a>
+        <a class="font-headline tracking-wide text-gray-400 hover:text-[#00FFFF] transition-colors" href="#">Seguimiento</a>
+      </nav>
+    </div>
+    <div class="flex items-center gap-5">
+      <div class="relative">
+        <button id="btn-config" class="p-2 text-gray-400 hover:text-[#00FFFF] transition-all rounded-full">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        </button>
+      </div>
+      <button class="p-2 text-gray-400 hover:text-[#00FFFF] transition-all rounded-full bg-white/5 border border-white/10">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="pt-32 pb-12 px-6 lg:px-12 max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative z-10">
+    
+    <div class="lg:col-span-8 space-y-8">
+      
+      <section class="glass-card p-10 relative overflow-visible">
+        <div class="absolute top-10 right-10">
+          <div class="flex items-center gap-2 px-3 py-1.5 align-middle">
+            <div id="connection-status" class="w-2 h-2 rounded-full bg-yellow-500"></div>
+            <span id="status-text" class="text-[10px] font-headline uppercase tracking-widest text-[#00FFFF]">Modo Local</span>
+          </div>
+        </div>
+        
+        <h1 class="font-headline text-4xl font-bold tracking-tight mb-10 text-white">Registro de Marca</h1>
+        
+        <div class="space-y-10">
+          <div class="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-4">
+            <div>
+              <label class="block text-[11px] font-headline uppercase tracking-widest text-gray-400 mb-3">NOMBRE DEL CLIENTE / EMPRESA</label>
+              <input 
+                id="cliente-nombre"
+                class="w-full bg-white/5 backdrop-blur-md border border-white/10 rounded-xl px-5 py-4 text-xl font-headline text-white placeholder-gray-500 focus:outline-none focus:border-[#00fbff] focus:shadow-[0_0_10px_rgba(0,251,255,0.3)] transition-all"
+                type="text" 
+                placeholder="Ingrese nombre del cliente o empresa"
+              >
+            </div>
+
+            <div>
+              <label class="block text-[11px] font-headline uppercase tracking-widest text-gray-400 mb-3">TIPO DE CLIENTE</label>
+              <select 
+                id="tipo-cliente"
+                class="w-full bg-white/5 backdrop-blur-md border border-white/10 rounded-xl px-5 py-4 text-xl font-headline text-white focus:outline-none focus:border-[#00fbff] focus:shadow-[0_0_10px_rgba(0,251,255,0.3)] transition-all appearance-none cursor-pointer"
+                style="background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23999%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right 12px center; background-size: 20px;"
+              >
+                <option value="Natural Person" class="bg-[#0a192f] text-white">Persona Natural</option>
+                <option value="Juridical Person" class="bg-[#0a192f] text-white">Persona Jurídica</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-[11px] font-headline uppercase tracking-widest text-gray-400 mb-3">Nombre de la Marca</label>
+            <input 
+              id="nombre-marca"
+              class="w-full bg-white/5 backdrop-blur-md border border-white/10 rounded-xl px-5 py-4 text-xl font-headline font-bold text-white placeholder-gray-500 focus:outline-none focus:border-[#00fbff] focus:shadow-[0_0_10px_rgba(0,251,255,0.3)] transition-all"
+              type="text" 
+              placeholder="Ingrese el nombre de la marca a registrar"
+            >
+          </div>
+
+          <div>
+            <label class="block text-[11px] font-headline uppercase tracking-widest text-gray-400 mb-3">TIPO DE BÚSQUEDA</label>
+            <div class="flex gap-4">
+              <button id="btn-fonetica" class="btn-tipo-busqueda flex-1 border p-4 rounded-xl flex items-center justify-between gap-3 transition-all bg-white/5 backdrop-blur-md" data-tipo="fonetica">
+                <span class="text-[12px] font-medium text-gray-400">Fonética</span>
+                <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </button>
+              <button id="btn-grafica" class="btn-tipo-busqueda flex-1 border p-4 rounded-xl flex items-center justify-between gap-3 transition-all bg-white/5 backdrop-blur-md" data-tipo="grafica">
+                <span class="text-[12px] font-medium text-gray-400">Gráfica</span>
+                <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </button>
+              <button id="btn-mixta" class="btn-tipo-busqueda flex-1 border p-4 rounded-xl flex items-center justify-between gap-3 transition-all bg-white/5 backdrop-blur-md" data-tipo="mixta">
+                <span class="text-[12px] font-medium text-gray-400">Mixta</span>
+                <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </button>
+            </div>
+          </div>
+          
+          <div class="pt-2 relative">
+              <div class="flex justify-between items-center mb-6">
+                  <label class="block text-[11px] font-headline uppercase tracking-widest text-gray-400">Selección de Clases NIZA</label>
+                  <button id="btn-toggle-busqueda" class="text-[10px] text-[#00FFFF] border border-[#00FFFF]/30 rounded px-4 py-1.5 bg-[#00FFFF]/5 hover:bg-[#00FFFF] hover:text-[#010812] transition-colors uppercase font-bold font-headline">
+                    + Añadir Clase
+                  </button>
+              </div>
+
+              <div id="buscador-clases" class="mb-8 relative z-30" style="display: none;">
+                <svg class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+                <input 
+                  id="input-busqueda-clase"
+                  type="text"
+                  class="w-full bg-[#0a192f] border border-[#00FFFF]/30 focus:border-[#00FFFF] rounded-xl p-4 pl-12 text-sm text-white focus:outline-none shadow-2xl"
+                  placeholder="Buscar clases..."
+                >
+                <div id="lista-clases" class="absolute top-full left-0 mt-2 w-full max-h-72 overflow-y-auto custom-scrollbar bg-[#0a192f] border border-[#00FFFF]/30 rounded-xl shadow-2xl">
+                </div>
+              </div>
+
+              <div id="clases-seleccionadas" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div id="empty-classes" class="col-span-full text-center p-8 border border-dashed border-white/20 rounded-xl text-gray-400 text-sm">
+                  Ninguna clase seleccionada. Haz clic en "Añadir Clase" para buscar.
+                </div>
+              </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="glass-card p-10">
+        <div class="flex items-center gap-4 mb-8">
+          <svg class="text-[#00FFFF]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+          <h2 class="font-headline text-xl font-bold text-white">Requisitos de Registro</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <div class="space-y-5">
+            <h3 class="text-[10px] font-headline uppercase tracking-widest text-[#00FFFF]">Identidad del Solicitante</h3>
+            <div class="flex gap-4">
+              <button id="btn-natural" class="identity-card flex-1 border p-5 rounded-xl flex flex-col items-center gap-3 transition-all">
+                <svg class="text-gray-400" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                <span class="text-[12px] font-medium text-gray-400">Persona Natural</span>
+              </button>
+              <button id="btn-juridica" class="identity-card flex-1 border p-5 rounded-xl flex flex-col items-center gap-3 transition-all">
+                <svg class="text-gray-400" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect width="20" height="14" x="2" y="3" rx="2"></rect><path d="M8 21h8m-4-4v4"></path></svg>
+                <span class="text-[12px] font-medium text-gray-400">Persona Jurídica</span>
+              </button>
+            </div>
+          </div>
+          
+          <div class="space-y-6">
+            <h3 class="text-[10px] font-headline uppercase tracking-widest text-[#00FFFF] pt-1">Documentación Obligatoria</h3>
+            <ul id="lista-requisitos" class="space-y-4">
+              <li class="flex items-center gap-4 text-xs text-gray-300 font-medium">
+                <div class="check-circle"></div>
+                Cédula de Identidad
+              </li>
+              <li class="flex items-center gap-4 text-xs text-gray-300 font-medium">
+                <div class="check-circle"></div>
+                RIF
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <aside class="lg:col-span-4 space-y-8 sticky top-28">
+      <div class="glass-card overflow-hidden">
+        <div class="bg-white/5 p-8 border-b border-white/5">
+          <h2 class="font-headline text-xl font-bold text-white mb-2">Resumen de Registro</h2>
+          <p class="text-[10px] text-gray-500 font-headline uppercase tracking-widest">ID de Solicitud: <span id="id-solicitud">M0000-0000</span></p>
+        </div>
+        
+        <div class="p-8 space-y-6">
+          <div class="flex justify-between text-sm">
+            <span class="text-gray-400 font-medium tracking-wide">Tasa de Búsqueda (<span id="tipos-seleccionados">0</span>)</span>
+            <span id="tasa-busqueda-val" class="font-number font-bold text-white tracking-wide">$0.00</span>
+          </div>
+          
+          <div class="flex justify-between text-sm">
+            <span class="text-gray-400 font-medium tracking-wide">Tasa de Solicitud (<span id="cant-clases">0</span> cls)</span>
+            <span id="tasa-solicitud-val" class="font-number font-bold text-white tracking-wide">$0.00</span>
+          </div>
+          
+          <div class="flex justify-between text-sm">
+            <span class="text-gray-400 font-medium tracking-wide">Honorarios (<span id="total-items">0</span> ítems)</span>
+            <span id="honorarios-val" class="font-number font-bold text-white tracking-wide">$0.00</span>
+          </div>
+          
+          <div id="planilla-row" class="flex justify-between text-sm" style="display: none;">
+            <span class="text-gray-400 font-medium tracking-wide">Planilla</span>
+            <span id="planilla-val" class="font-number font-bold text-white tracking-wide">$0.00</span>
+          </div>
+          
+          <div class="h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-50"></div>
+          
+          <div class="flex justify-between text-sm bg-white/5 p-3 rounded-lg border border-white/10">
+            <span class="text-white font-bold tracking-wide">SUBTOTAL BRUTO</span>
+            <span id="subtotal-bruto-val" class="font-number font-bold text-[#00FFFF] tracking-wide">$0.00</span>
+          </div>
+          
+          <div class="flex justify-between text-sm items-center">
+            <span class="text-gray-400 font-medium tracking-wide">Descuento (%)</span>
+            <div class="flex items-center gap-2">
+              <span id="descuento-monto-val" class="font-number text-red-400 text-sm">-$0.00</span>
+              <input id="input-descuento" type="number" min="0" max="100" value="0" class="w-14 bg-white/10 border border-white/20 rounded px-2 py-1 text-right text-white font-number text-sm focus:outline-none focus:border-[#00FFFF]">
+            </div>
+          </div>
+          
+          <div class="flex justify-between text-sm">
+            <span class="text-gray-300 font-medium tracking-wide">Subtotal Neto</span>
+            <span id="subtotal-neto-val" class="font-number font-bold text-white tracking-wide">$0.00</span>
+          </div>
+          
+          <div class="flex justify-between text-sm items-center">
+            <span class="text-gray-400 font-medium tracking-wide">IVA (%)</span>
+            <div class="flex items-center gap-2">
+              <span id="iva-monto-val" class="font-number text-gray-400 text-sm">$0.00</span>
+              <input id="input-iva" type="number" min="0" max="100" value="16" class="w-14 bg-white/10 border border-white/20 rounded px-2 py-1 text-right text-white font-number text-sm focus:outline-none focus:border-[#00FFFF]">
+            </div>
+          </div>
+          
+          <div class="h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-50"></div>
+          
+          <div class="space-y-3 pt-2">
+            <span class="text-[10px] font-headline uppercase tracking-[0.2em] text-gray-500">Inversión Total</span>
+            <div class="flex items-baseline gap-3">
+              <span id="inversion-total-val" class="text-5xl font-number font-bold text-[#00FFFF] text-glow">$0.00</span>
+              <span class="text-xs text-gray-500 font-bold">USD</span>
+            </div>
+          </div>
+          
+          <div class="pt-6">
+            <button id="btn-generar" class="btn-disabled w-full py-5 rounded-[12px] font-headline font-bold uppercase tracking-widest flex items-center justify-center gap-3">
+              SELECCIONE TIPO DE BÚSQUEDA
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg>
+            </button>
+            <div id="status-message" class="mt-4 p-3 rounded-lg text-sm text-center font-medium border" style="display: none;"></div>
+          </div>
+          
+          <p class="text-[10px] text-center text-gray-500 leading-relaxed max-w-[250px] mx-auto">
+            *No incluye Tasa de Derecho a Marca. Vigencia: 2 días.
+          </p>
+        </div>
+      </div>
+
+      <div class="glass-card h-56 overflow-hidden relative group">
+        <div class="absolute inset-0 bg-gradient-to-t from-[#010812] via-[#010812]/50 to-transparent"></div>
+        <div class="absolute bottom-6 left-6">
+          <p class="text-[10px] font-headline uppercase tracking-widest text-[#00FFFF] mb-2 text-glow">Demo Mode</p>
+          <p class="text-sm font-bold text-white">Sin conexión a Google Sheets</p>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Modal de Configuración -->
+  <div id="config-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm" style="display: none;">
+    <div class="bg-[#0a192f] border border-[#00fbff] rounded-2xl p-6 w-full max-w-md max-h-[80vh] flex flex-col shadow-[0_0_30px_rgba(0,251,255,0.2)]" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between mb-4 shrink-0">
+        <h2 class="font-headline text-xl font-bold text-white">Configuración de Precios</h2>
+        <button id="btn-cerrar-config" class="p-2 text-gray-400 hover:text-[#00fbff] transition-all">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+        </button>
+      </div>
+      
+      <div class="space-y-4 overflow-y-auto pr-2 custom-scrollbar flex-1 min-h-0">
+        <div>
+          <label class="block text-[11px] font-headline uppercase tracking-widest text-gray-400 mb-3">Búsqueda Fonética ($)</label>
+          <input id="config-fonetica" type="number" value="60" class="w-full bg-white/5 backdrop-blur-md border border-white/10 rounded-xl px-5 py-4 text-xl font-headline text-white focus:outline-none focus:border-[#00fbff] focus:shadow-[0_0_10px_rgba(0,251,255,0.3)] transition-all">
+        </div>
+        <div>
+          <label class="block text-[11px] font-headline uppercase tracking-widest text-gray-400 mb-3">Búsqueda Gráfica ($)</label>
+          <input id="config-grafica" type="number" value="60" class="w-full bg-white/5 backdrop-blur-md border border-white/10 rounded-xl px-5 py-4 text-xl font-headline text-white focus:outline-none focus:border-[#00fbff] focus:shadow-[0_0_10px_rgba(0,251,255,0.3)] transition-all">
+        </div>
+        <div>
+          <label class="block text-[11px] font-headline uppercase tracking-widest text-gray-400 mb-3">Búsqueda Mixta ($)</label>
+          <input id="config-mixta" type="number" value="120" class="w-full bg-white/5 backdrop-blur-md border border-white/10 rounded-xl px-5 py-4 text-xl font-headline text-white focus:outline-none focus:border-[#00fbff] focus:shadow-[0_0_10px_rgba(0,251,255,0.3)] transition-all">
+        </div>
+        <div>
+          <label class="block text-[11px] font-headline uppercase tracking-widest text-gray-400 mb-3">Honorarios Profesionales ($)</label>
+          <input id="config-honorarios" type="number" value="700" class="w-full bg-white/5 backdrop-blur-md border border-white/10 rounded-xl px-5 py-4 text-xl font-headline text-white focus:outline-none focus:border-[#00fbff] focus:shadow-[0_0_10px_rgba(0,251,255,0.3)] transition-all">
+        </div>
+        <div>
+          <label class="block text-[11px] font-headline uppercase tracking-widest text-gray-400 mb-3">Tasa de Solicitud ($)</label>
+          <input id="config-tasa" type="number" value="120" class="w-full bg-white/5 backdrop-blur-md border border-white/10 rounded-xl px-5 py-4 text-xl font-headline text-white focus:outline-none focus:border-[#00fbff] focus:shadow-[0_0_10px_rgba(0,251,255,0.3)] transition-all">
+        </div>
+      </div>
+      
+      <button id="btn-guardar-config" class="w-full py-4 rounded-xl bg-[#00FFFF] text-black font-bold mt-4 hover:bg-[#00fbff] transition-colors">
+        GUARDAR CONFIGURACIÓN
+      </button>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-8 right-8 z-50 p-4 rounded-xl border bg-[#0a192f]/95 backdrop-blur-md shadow-lg transform translate-y-20 opacity-0 transition-all" style="display: none;">
+    <p id="toast-message" class="text-sm font-medium"></p>
+  </div>
+
+  <!-- Preview Modal -->
+  <div id="preview-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm" style="display: none;">
+    <div class="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-auto">
+      <div class="p-8">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-2xl font-bold text-gray-800">Vista Previa del Presupuesto</h2>
+          <button id="btn-cerrar-preview" class="p-2 text-gray-400 hover:text-gray-600">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+          </button>
+        </div>
+        <div id="preview-content" class="text-gray-800">
+        </div>
+        <div class="flex gap-4 mt-6">
+          <button id="btn-confirmar" class="flex-1 py-4 rounded-xl bg-green-600 text-white font-bold hover:bg-green-700">
+            CONFIRMAR Y DESCARGAR PDF
+          </button>
+          <button id="btn-cancelar" class="px-6 py-4 rounded-xl border border-gray-300 text-gray-600 font-bold hover:bg-gray-100">
+            CANCELAR
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
